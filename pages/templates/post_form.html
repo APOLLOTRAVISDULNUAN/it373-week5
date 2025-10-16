@@ -3,18 +3,24 @@
    {{ form.instance.pk|yesno:"Edit Post, Create New Post" }}
 {% endblock %}
 {% block content %}
+<div class="post-form-container">
    {% if messages %}
-      <ul>
+      <ul class="messages">
          {% for message in messages %}
             <li>{{ message }}</li>
          {% endfor %}
       </ul>
    {% endif %}
-   <hr>
+
    <h1>{{ form.instance.pk|yesno:"Edit Post, Create New Post" }}</h1>
-   <form method="POST">
+   <hr>
+
+   <form method="POST" class="post-form">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">{{ form.instance.pk|yesno:"Update, Save" }}</button>
+      <button type="submit" class="submit-btn">
+         {{ form.instance.pk|yesno:"Update, Save" }}
+      </button>
    </form>
+</div>
 {% endblock %}
